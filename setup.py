@@ -8,13 +8,8 @@ from setuptools import Extension, setup
 
 if os.name == "nt":
     libdep = []
-    extra_compile_args = []
 else:
     libdep = ["m"]
-    if platform.processor() == "i386":
-        extra_compile_args = ['-msse2', '-mfpmath=sse']
-    else:
-        extra_compile_args = []
 
 try:
     with open("src/pillowfight/_version.h", "r") as file_descriptor:
@@ -80,7 +75,6 @@ setup(
             ],
             include_dirs=["include"],
             libraries=libdep,
-            extra_compile_args=extra_compile_args,
             undef_macros=['NDEBUG'],
         ),
     ],
